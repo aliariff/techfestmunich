@@ -13,7 +13,11 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
     console.log("client connected");
-    socket.emit('slow_down', {
-        speed: -10
+    socket.on('car_event', function(data) {
+        // receive car event data
+        // if there is obstruction, emit to slow_down / full brake
+        //  socket.emit('slow_down', {
+        //     speed: -10
+        // });
     });
 });
