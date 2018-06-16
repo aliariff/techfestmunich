@@ -19,5 +19,6 @@ io.on('connection', function(socket) {
         //  socket.emit('slow_down', {
         //     speed: -10
         // });
+		console.log(data);
     });
 });
