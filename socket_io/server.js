@@ -19,43 +19,37 @@ io.on('connection', function(socket) {
 
     socket.on('car_event', function(data) {
 
-        console.log(data);
+      //---------------------------------------------------------------
+       ///console.log(data);
+       //--- Storing relevant cars' events
+       if (data['car_id'] == '1') {
+         var carOneLastevent = data;
+         ///console.log(carOneLastevent);
+       }
+       else if  (data['car_id'] == '2') {
+         var carTwoLastevent = data;
+         ///console.log(carTwoLastevent);
+       }
+       else if  (data['car_id'] == '3') {
+         var carThreeLastevent = data;
+         ///console.log(carThreeLastevent);
+       }
 
+       //---------------------------------------------------------------
+       if (data['status'] == 'obstacle') {
 
-        //--- Storing relevant cars' events
-        if (data['car_id'] == '1') {
+         //--- Process car event from cars 1 and 2
+         // Calculation ...
+         allClients['car_2'].emit('slow_down', {
+           velocity: -20
+         });
 
-          var carOneLastevent = data;
-          console.log(carOneLastevent);
-
-        }
-        else if  (data['car_id'] == '2') {
-
-          var carTwoLastevent = data;
-          console.log(carTwoLastevent);
-
-        }
-        else if  (data['car_id'] == '3') {
-
-          var carThreeLastevent = data;
-          console.log(carThreeLastevent);
-
-        }
-
-
-        if (data['status'] == 'obstacle') {
-
-          /*
-          //--- TODO: get and process json from cars 1, 2, 3
-          processCarEvent(carID, distanceToLeader, speed){
-             // do something
-          }
-          */
-
-            //--- TODO: choose the socket of 2 and 3 cars and send commands
-            io.sockets.emit('slow_down', {
-                speed: -10
-            });
+         //--- Process car event from cars 2 and 3
+         // Calculation ...
+         allClients['car_3'].emit('slow_down', {
+           velocity: -10
+         });
+         //---------------------------------------------------------------
 
         }
     });
@@ -106,25 +100,25 @@ function test() {
     });
 
     //same for Truck 3
-			//same for Truck 3 
-			
-				 
+			//same for Truck 3
+
+
 			data3 = get(Truck2.info)
-			double pos3 = data3['position'];
-			double v3 = data3['speed'];
-			
-			double safetydistance3 = ?;
-		
-			double sddistance3 = obstaclepos - pos3 - ssdistance3;
-		 
+			var pos3 = data3['position'];
+			var v3 = data3['speed'];
+
+			var safetydistance3 = 8888;
+
+			var sddistance3 = obstaclepos - pos3 - ssdistance3;
+
 			dt3 = sddistance3/v3;
-			
-			int targetID3 = 3;
-			
+
+			var targetID3 = 3;
+
 			io.sockets.emit('slow_down', {
-				id = targetID3,
+				id: targetID3,
 				speed: -v3,
 				time: dt3
-				
+
 			});
 }

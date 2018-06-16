@@ -1,8 +1,8 @@
 var io = require('socket.io-client');
-var socket = io('http://localhost:3000?clientId=car_2');
+var socket = io('http://localhost:3000?clientId=car_3');
 
 
-var id = 2;
+var id = 3;
 var speed = 0;
 var position = 0;
 
