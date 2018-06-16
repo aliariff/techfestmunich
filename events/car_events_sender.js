@@ -1,5 +1,5 @@
 var io = require('socket.io-client');
-var socket = io('http://b1e4e00a.ngrok.io');
+var socket = io('http://localhost:3000');
 
 socket.on('slow_down', function(data) {
     console.log(data);
