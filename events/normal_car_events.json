@@ -11,7 +11,7 @@
         "distance": 10
       }
     ],
-    "speed": 80,
+    "speed": 30,
     "status": "running"
   },
   {
@@ -26,7 +26,7 @@
         "distance": 5
       }
     ],
-    "speed": 80,
+    "speed": 30,
     "status": "running"
   },
   {
@@ -41,7 +41,7 @@
         "distance": 5
       }
     ],
-    "speed": 80,
+    "speed": 30,
     "status": "running"
   }
 ]
