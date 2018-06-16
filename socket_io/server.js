@@ -21,7 +21,7 @@ io.on('connection', function(socket) {
     socket.on('car_event', function(data) {
 
         //---------------------------------------------------------------
-        ///console.log(data);
+        //console.log(data);
         //--- Storing relevant cars' events
         if (data['car_id'] == '1') {
             var carOneLastevent = data;
@@ -37,11 +37,29 @@ io.on('connection', function(socket) {
         //---------------------------------------------------------------
         if (data['status'] == 'obstacle') {
 
+
+          //--- Process car event from cars 1 and 2
+          console.log(carOneLastevent);
+          allClients['car_1'].emit('slow_down', {
+              velocity: -30
+          });
+
+
             //--- Process car event from cars 1 and 2
-            // Calculation ...
+            console.log(carTwoLastevent);
+
+            var distanceBetwenCars1and2 = carOneLastevent['distances'][0]['distance'];
+            var distanceToObstacle = 50;
+            //console.log(distanceBetwenCars1and2);
+            //console.log(distanceToObstacle);
+
+            //var result = Computation.calculate (carOneLastevent['speed'], carTwoLastevent['speed'], distanceBetwenCars1and2, distanceToObstacle, 1);
+            /*
             allClients['car_2'].emit('slow_down', {
-                velocity: -20
+              console.log("=== Inside server js. Emiting result 2 ===");
+              result // velocity: -20
             });
+            */
 
             //--- Process car event from cars 2 and 3
             // Calculation ...
