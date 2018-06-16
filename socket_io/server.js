@@ -18,11 +18,45 @@ io.on('connection', function(socket) {
     console.log(`client ${clientId} connected`);
 
     socket.on('car_event', function(data) {
+
         console.log(data);
+
+
+        //--- Storing relevant cars' events
+        if (data['car_id'] == '1') {
+
+          var carOneLastevent = data;
+          console.log(carOneLastevent);
+
+        }
+        else if  (data['car_id'] == '2') {
+
+          var carTwoLastevent = data;
+          console.log(carTwoLastevent);
+
+        }
+        else if  (data['car_id'] == '3') {
+
+          var carThreeLastevent = data;
+          console.log(carThreeLastevent);
+
+        }
+
+
         if (data['status'] == 'obstacle') {
+
+          /*
+          //--- TODO: get and process json from cars 1, 2, 3
+          processCarEvent(carID, distanceToLeader, speed){
+             // do something
+          }
+          */
+
+            //--- TODO: choose the socket of 2 and 3 cars and send commands
             io.sockets.emit('slow_down', {
                 speed: -10
             });
+
         }
     });
 });
