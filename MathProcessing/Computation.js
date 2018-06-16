@@ -2,7 +2,6 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var port = 3000;
-var allClients = {}
 
 server.listen(port, function() {
     console.log("listening");
@@ -13,9 +12,8 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-    var clientId = socket.handshake.query.clientId;
-    allClients[clientId] = socket;
-    console.log(`client ${clientId} connected`);
+    console.log("client connected");
+
 
     socket.on('car_event', function(data) {
 
@@ -31,7 +29,7 @@ io.on('connection', function(socket) {
 		  //slow down Truck 1
 		  
 		  double pos1 = data['position'];
-		  double v1 = data['speed'];
+		  double v1 = data['speed']M;
 		  double obstaclepos = data['obstacleposition'];
 		
 		  double distToObst = obstaclepos - pos1;
@@ -72,31 +70,9 @@ io.on('connection', function(socket) {
 			});
 		 
 		//same for Truck 3 
-			
-				 
-			data3 = get(Truck2.info)
-			double pos3 = data3['position'];
-			double v3 = data3['speed'];
-			
-			double safetydistance3 = ?;
-		
-			double sddistance3 = obstaclepos - pos3 - ssdistance3;
 		 
-			dt3 = sddistance3/v3;
-			
-			int targetID3 = 3;
-			
-			io.sockets.emit('slow_down', {
-				id = targetID3,
-				speed: -v3,
-				time: dt3
-				
-			});
 		 
-            io.sockets.emit('slow_down', {
-                speed: -10
-            });
-
         }
+
     });
 });
