@@ -28,8 +28,10 @@ io.on('connection', function(socket) {
                 var car_id = item['car_id']
                 var distance = item['distance']
                 var car_id_speed = tempMemory[car_id][tempMemory[car_id].length - 1]['speed'];
+                //--- Put parameters into the function
                 var result = Computation.calculate(lastEvent['speed'], car_id_speed, distance, 300);
                 console.log(result);
+                //--- Emit results
                 allClients[`car_${car_id}`].emit('slow_down', result);
             });
         }
